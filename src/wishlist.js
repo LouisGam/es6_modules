@@ -2,7 +2,7 @@
 
 import Car from "./car.js";
 
-export class WishList {
+export default class WishList {
   constructor() {
     this.list = [];
     this.nextId = 0;
@@ -23,6 +23,6 @@ export class WishList {
   }
 
   remove(carId) {
-    this.list = this.list.filter(car => car.id !== carId);
+    this.list = this.list.filter((car) => car.id !== carId);
   }
 }

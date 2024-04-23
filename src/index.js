@@ -1,4 +1,4 @@
-import { WishList } from "./wishlist.js";
+import WishList from "./wishlist.js";
 
 const form = document.querySelector("#submitForm");
 const makeInput = document.querySelector("#make");
@@ -9,20 +9,29 @@ const modelDisplay = document.querySelector("#model-display");
 const yearDisplay = document.querySelector("#year-display");
 const removeBtn = document.querySelector("#removeBtn");
 const wishlistUl = document.querySelector("#wishlist");
+console.log(form);
+console.log(modelInput);
+console.log(makeInput);
+console.log(makeDisplay);
+console.log(modelDisplay);
+console.log(yearDisplay);
+console.log(removeBtn);
+console.log(wishlistUl);
+console.log(yearInput);
 
 if (
-  !form ||
-  !makeInput ||
-  !modelInput ||
-  !yearInput ||
-  !makeDisplay ||
-  !modelDisplay ||
-  !yearDisplay ||
-  !removeBtn ||
-  !wishlistUl
+  form ||
+  makeInput ||
+  modelInput ||
+  yearInput ||
+  makeDisplay ||
+  modelDisplay ||
+  yearDisplay ||
+  removeBtn ||
+  wishlistUl
 ) {
   const wishlist = new WishList();
-
+  console.log("I successfully ran my code block");
   function showCarDetails(car) {
     makeDisplay.textContent = car.make;
     modelDisplay.textContent = car.model;
@@ -35,14 +44,13 @@ if (
     while (wishlistUl.firstChild) {
       wishlistUl.removeChild(wishlistUl.firstChild);
     }
+    wishlist.list.forEach((car) => {
+      const li = document.createElement("li");
+      li.textContent = `${car.make} ${car.model}`;
+      li.addEventListener("click", () => showCarDetails(car));
+      wishlistUl.appendChild(li);
+    });
   }
-
-  wishlist.list.forEach((car) => {
-    const li = document.createElement("li");
-    li.textContent = `${car.make} ${car.model}`;
-    li.addEventListener("click", () => showCarDetails(car));
-    wishlistUl.appendChild(li);
-  });
 
   function addCar(event) {
     console.log("addCar method called");
@@ -68,4 +76,6 @@ if (
 
   form.addEventListener("submit", addCar);
   removeBtn.addEventListener("click", removeCar);
+} else {
+  console.log("I did not successfully execute this cod eblock");
 }
